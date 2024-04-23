@@ -9,10 +9,10 @@ load_dotenv()
 # Initialize Environment Variables
 APP_ID = os.getenv('APP_ID')
 NETWORK_SERVER_IP = os.getenv('NETWORK_SERVER_IP')
-NETWORK_SERVER_PORT = os.getenv('NETWORK_SERVER_PORT')
+NETWORK_SERVER_PORT = int(os.getenv('NETWORK_SERVER_PORT'))
 
 # Define callback functions
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc, properties):
     if rc == 0:
         # Subscribe to uplinks from all devices within the app.
         client.subscribe(f"application/{APP_ID}/device/+/event/up")
@@ -25,8 +25,8 @@ def on_message(client, userdata, message):
     print("\nReceived message on topic:", message.topic)
     print("Message payload:", message.payload.decode())
 
-# Create MQTT client instance
-client = mqtt.Client()
+# Create a client instance
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 
 # Assign callback functions
 client.on_connect = on_connect

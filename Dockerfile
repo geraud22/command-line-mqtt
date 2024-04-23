@@ -6,18 +6,13 @@ RUN apt-get update && \
     apt-get install -y python3-pip && \
     apt-get clean
 
-# Show Python and pip versions
-RUN python3 --version
-RUN pip3 --version
-
-RUN mkdir /app
-WORKDIR /app
-
-# Copy script to the container
-COPY . /app
+# Uncomment this if you are not using the devcontainer.json
+# RUN mkdir /app
+# WORKDIR /app
+# COPY . /app
 
 # Install dependencies
 RUN pip install -r requirements.txt
 
-# Command to run your application
-# CMD ["python", "app.py"]
+# Uncomment this if you want the container to start the script automatically. Output can be viewed in Docker Desktop.
+# CMD ["python", "mqtt-connect.py"]

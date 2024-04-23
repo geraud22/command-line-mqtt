@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y python3-pip && \
     apt-get clean
 
-# Uncomment this if you are not using the devcontainer.json
+# Uncomment this if you are not using a DevContainer.
 # RUN mkdir /app
 # WORKDIR /app
 # COPY . /app
@@ -14,5 +14,5 @@ RUN apt-get update && \
 # Install dependencies
 RUN pip install -r requirements.txt
 
-# Uncomment this if you want the container to start the script automatically. Output can be viewed in Docker Desktop.
+# Uncomment this if not using a DevContainer. This will run the script on container start-up. Output can be viewed in Docker Desktop.
 # CMD ["python", "mqtt-connect.py"]
